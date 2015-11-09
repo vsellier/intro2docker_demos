@@ -1,0 +1,9 @@
+redis:
+  image: redis
+myapp:
+  image: vsellier/swarm_demo
+  ports:
+    - 9999
+  environment:
+    - REDIS_HOST=04swarm_redis_1
+    - "affinity:com.docker.compose.service!=redis"

@@ -1,0 +1,15 @@
+redis:
+  image: redis
+myapplogs:
+  image: busybox
+  entrypoint: "/bin/true"
+  volumes:
+    - /var/log/myapp/
+myapp:
+  build: myapp
+  links:
+    - redis:storage
+  volumes_from:
+    - myapplogs
+  ports:
+    - 9999
